@@ -7,4 +7,9 @@ https://docs.google.com/document/d/17qz1hbIemTJrs6JjE08aCtj1HRbrdnTZEDp5zzpNATQ/
 1. git clone https://github.com/ranerlich7/django_pet_login_upload.git
 2. open django_pet_login_upload folder
 3. pip install -r requirements.txt
-4. super user is ran. password is 1234
+4. python manage.py migrate
+5. python manage.py createsuperuser
+
+# run server
+
+python manage.py runserver
