@@ -1,2 +1,19 @@
+{% if user.is_authenticated %}
+<!-- show this if user is logged in-->
+<h3>Hello {{ user.username }}</h3>
+<a href="{% url 'pets_logout' %}">logout</a>
+
+{% else %}
+<!-- show this if user is logged out-->
+<h3>please login</h3>
+<!-- login form -->
+<form method="POST" action="{% url 'pets_login' %}">
+  {% csrf_token %} Username <input name="username" /> &nbsp; Password <input name="password" type="password" />
+  <input type="submit" value="Login" />
+</form>
+
+<!-- login form end -->
+{% endif %}
+
 <h1>Hello this is my pet store</h1>
 <h2>Welcome!</h2>
