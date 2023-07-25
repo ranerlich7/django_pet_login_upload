@@ -15,3 +15,17 @@ https://docs.google.com/document/d/17qz1hbIemTJrs6JjE08aCtj1HRbrdnTZEDp5zzpNATQ/
 # run server
 
 python manage.py runserver
+
+# update version
+1. git checkout -b [branch 1,2,3]
+2. git add .
+3. git commit -am "[your message]"
+4. git checkout main
+5. git pull
+
+# another option - danger!
+## this will delete your code - so you can copy the folder for backup if you need
+1. backup your code - copy or zip
+2. git stash
+3. git pull
+   
