@@ -1,3 +1,11 @@
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% if user.is_authenticated %}
 <!-- show this if user is logged in-->
 <h3>Hello {{ user.username }}</h3>
@@ -5,15 +13,24 @@
 
 {% else %}
 <!-- show this if user is logged out-->
-<h3>please login</h3>
+<h3>please login or Register</h3>
 <!-- login form -->
+<h2>Login</h2>
 <form method="POST" action="{% url 'pets_login' %}">
   {% csrf_token %} Username <input name="username" /> &nbsp; Password <input name="password" type="password" />
   <input type="submit" value="Login" />
 </form>
+<br />
+<hr />
+<h2>Register</h2>
+<form method="POST" action="{% url 'pets_register' %}">
+  {% csrf_token %} Username <input name="username" /> &nbsp; Password <input name="password" type="password" />
+  <input type="submit" value="Register" />
+</form>
 
 <!-- login form end -->
 {% endif %}
+<hr />
 
 <h1>Hello this is my pet store</h1>
 <h2>Welcome!</h2>

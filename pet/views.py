@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
     print("index function entered !!!!!!!!!!!!")
@@ -12,7 +13,21 @@ def pets_logout(request):
     logout(request)
     return redirect('index')
     
-
+def pets_register(request):
+    print("register function entered !!!!!!!!!!!!")
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            print(f"username={username}. passowrd={password}")    
+            user = User.objects.create_user(username, "", password)
+            user.save()
+    except Exception as e:
+        print(f"*** Error occured:{e}")
+        messages.error(request, f"*** Error occured while registering user:{e}")
+        
+    return redirect('index')
+        
 def pets_login(request):
     print("login function entered !!!!!!!!!!!!")
     if request.method == 'POST':
@@ -28,7 +43,7 @@ def pets_login(request):
             # If the credentials are correct, log in the user
             login(request, user)
             print(f"** login passed. user is:{user}")
-            return redirect('playlist')
+            return redirect('index')
         else:
             print(f"!! error login. user is:{user}")
             # If authentication fails, show an error message or redirect back to the login page
